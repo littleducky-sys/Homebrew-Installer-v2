@@ -3,36 +3,37 @@ import os
 
 mode = ""
 
-SETTINGS_PATH = "project/meta/settings.json"
+print("Welcome to Homebrew Installer v2!")
+print("This program is meant for windows.")
 
-if os.path.exists(SETTINGS_PATH):
-    with open(SETTINGS_PATH, "r") as file:
-        settings = json.load(file)
-else:
-    settings = {}
+with open("project/meta/settings.json", "r") as f:
+    data = json.load(f)
 
-if not settings.get("cgui"):
-    print("Welcome to Homebrew Installer v2!")
+if data["mode"] != "console" and data["mode"] != "gui":
+ print("y=Console/n=GUI")
+ option = input("Start program in console or (unstable) GUI mode (y/n)? ")
 
-    print("y=Console/n=GUI")
-    option = input("Start program in console or (unstable) GUI mode (y/n)? ")
+ if option.lower() == 'y':
+     print("Starting in console mode...")
+     mode = "console"
+ elif option.lower() == 'n':
+     print("Starting in GUI mode...")
+     mode = "gui"
+ else:
+     print("Invalid option. Starting in console mode by default.")
+     mode = "console"
 
-    if option.lower() == 'y':
-        print("Starting in console mode...")
-        mode = "console"
-    elif option.lower() == 'n':
-        print("Starting in GUI mode...")
-        mode = "gui"
-    else:
-        print("Invalid option. Starting in console mode by default.")
-        mode = "console"
+json_write_data = {
+    "mode": mode
+}
 
-    settings["cgui"] = mode
+if data["mode"] == "":
+ with open("project/meta/settings.json", "w") as f:
+     json.dump(json_write_data, f)
+     print(f"Mode set to: {mode}")
+     print("Settings.json updated.")
 
-    print(f"Mode set to: {mode}")
-    print("Settings.json updated.")
-
-    with open(SETTINGS_PATH, "w") as file:
-        json.dump(settings, file, indent=4)
-
-print("test")
+if data["mode"] == "console":
+    print("console")
+elif data["mode"] == "gui":
+    print("gui")
