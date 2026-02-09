@@ -1,13 +1,27 @@
 import json
 import os
+import consoleselect
 
 mode = ""
 
 print("Welcome to Homebrew Installer v2!")
 print("This program is meant for windows.")
 
+appjson_path = "project/meta/app.json"
+settingspath = "project/meta/settings.json"
+
+with open(appjson_path, "r") as f:
+    appjson = json.load(f)
+
+if not os.path.exists(path=settingspath):
+    os.makedirs(os.path.dirname(settingspath), exist_ok=True)
+    with open(settingspath, "w") as f:
+        json.dump(appjson["prodmake"], f)
+
+
 with open("project/meta/settings.json", "r") as f:
     data = json.load(f)
+    print(data)
 
 if data["mode"] != "console" and data["mode"] != "gui":
  print("y=Console/n=GUI")
@@ -23,17 +37,13 @@ if data["mode"] != "console" and data["mode"] != "gui":
      print("Invalid option. Starting in console mode by default.")
      mode = "console"
 
-json_write_data = {
-    "mode": mode
-}
-
 if data["mode"] == "":
  with open("project/meta/settings.json", "w") as f:
+     json_write_data = {
+    "mode": mode
+}
      json.dump(json_write_data, f)
-     print(f"Mode set to: {mode}")
      print("Settings.json updated.")
+     data["mode"] = mode
 
-if data["mode"] == "console":
-    print("console")
-elif data["mode"] == "gui":
-    print("gui")
+consoleselect.init()
