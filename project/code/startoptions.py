@@ -13,6 +13,9 @@ settingspath = "project/meta/settings.json"
 with open(appjson_path, "r") as f:
     appjson = json.load(f)
 
+if appjson["devmode"] == True:
+   os.remove(settingspath)
+
 if not os.path.exists(path=settingspath):
     os.makedirs(os.path.dirname(settingspath), exist_ok=True)
     with open(settingspath, "w") as f:

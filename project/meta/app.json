@@ -15,5 +15,6 @@
 
         }
     },
-    "prodmake": {"mode": ""}
+    "prodmake": {"mode": ""},
+    "devmode": true
 }
