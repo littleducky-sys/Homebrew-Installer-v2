@@ -5,6 +5,8 @@ import clearcmd
 
 appjson_path = "project/meta/app.json"
 
+game_console = ""
+
 def init():
  
  with open(appjson_path, "r") as f:
@@ -34,6 +36,7 @@ def init():
                  time.sleep(3)
                  print("Host Connected!")
                  time.sleep(1)
+                 game_console = option
          elif option.lower() == "Nintendo Switch".lower():
              print("--WARNING: EVERYTHING ON YOUR SD CARD WILL. BE. DELETED!!--")
              print("To start please format your SD Card to FAT32.")
@@ -48,4 +51,3 @@ def init():
         
  elif data["mode"] == "gui":
      print("gui")
-
