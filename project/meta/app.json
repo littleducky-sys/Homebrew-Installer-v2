@@ -15,8 +15,8 @@
 
         }
     },
-    "prodmake": {"mode": "", "game_console": ""},
-    "devmode": true,
+    "prodmake": {"mode": "", "game_console": "", "stage": 0},
+    "devmode": {"m": true, "stage_skipping": false},
     "meta_path": "project/meta/meta.json",
     "settings_path": "project/meta/settings.json"
 }

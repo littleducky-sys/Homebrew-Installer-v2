@@ -12,7 +12,7 @@ appjson_path = "project/meta/app.json"
 with open(appjson_path, "r") as f:
     appjson = json.load(f)
 
-if appjson["devmode"] == True:
+if appjson["devmode"]["m"] == True:
    os.remove(appjson["settings_path"])
                      
 if not os.path.exists(path=appjson["settings_path"]):
