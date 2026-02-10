@@ -1,20 +1,22 @@
 {
     "Consoles": {
-        "DS": {
+        "ds": {
 
         },
-        "3DS": {
+        "3ds": {
 
         },
-        "Wii": "ModMii",
-        "Wii U": "ModMii",
-        "Nintendo Switch": {
+        "wii": "ModMii",
+        "wii u": "ModMii",
+        "nintendo switch": {
 
         },
-        "DSi": {
+        "dsi": {
 
         }
     },
-    "prodmake": {"mode": ""},
-    "devmode": true
+    "prodmake": {"mode": "", "game_console": ""},
+    "devmode": true,
+    "meta_path": "project/meta/meta.json",
+    "settings_path": "project/meta/settings.json"
 }

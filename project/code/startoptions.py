@@ -8,17 +8,16 @@ print("Welcome to Homebrew Installer v2!")
 print("This program is meant for windows.")
 
 appjson_path = "project/meta/app.json"
-settingspath = "project/meta/settings.json"
 
 with open(appjson_path, "r") as f:
     appjson = json.load(f)
 
 if appjson["devmode"] == True:
-   os.remove(settingspath)
-
-if not os.path.exists(path=settingspath):
-    os.makedirs(os.path.dirname(settingspath), exist_ok=True)
-    with open(settingspath, "w") as f:
+   os.remove(appjson["settings_path"])
+                     
+if not os.path.exists(path=appjson["settings_path"]):
+    os.makedirs(os.path.dirname(appjson["settings_path"]), exist_ok=True)
+    with open(appjson["settings_path"], "w") as f:
         json.dump(appjson["prodmake"], f)
 
 
@@ -41,7 +40,7 @@ if data["mode"] != "console" and data["mode"] != "gui":
      mode = "console"
 
 if data["mode"] == "":
- with open("project/meta/settings.json", "w") as f:
+ with open(appjson["settings_path"], "w") as f:
      json_write_data = {
     "mode": mode
 }
