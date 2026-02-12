@@ -3,15 +3,9 @@ import json
 import time
 import clearcmd
 
-appjson_path = "project/meta/app.json"
-
 game_console = ""
 
-def init():
- 
- with open(appjson_path, "r") as f:
-    appjson = json.load(f)
-
+def init(appjson):
  with open(appjson["settings_path"], "r") as f:
     clearcmd.clear()
     data = json.load(f)
@@ -37,6 +31,8 @@ def init():
                  print("Host Connected!")
                  time.sleep(1)
                  game_console = option
+                 import gethacks
+                 gethacks.init(appjson, game_console)
          elif option.lower() == "Nintendo Switch".lower():
              print("--WARNING: EVERYTHING ON YOUR SD CARD WILL. BE. DELETED!!--")
              print("To start please format your SD Card to FAT32.")
