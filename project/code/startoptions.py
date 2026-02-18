@@ -1,29 +1,40 @@
 import json
+#this should be the only hardcoded path but i am not sure.
+appjson_path = "project/meta/app.json"
+
+with open(appjson_path, "r") as f:
+    appjson = json.load(f)
 import os
 import consoleselect
 import sys
 import platform
 from time import sleep
+import metareader
 
+metareader.connect(appjson)
+print(metareader.exported_meta)
 
 mode = ""
+os_name = ""
+
+if platform.system() == "Darwin":
+    os_name = "macOS"
+else:
+    os_name = platform.system()
+
+if appjson["devmode"]["m"] == True and appjson["devmode"]["fakeOS"]["enabled"] == True:
+    os_name = appjson["devmode"]["fakeOS"]["os"]
 
 print("Welcome to Homebrew Installer v2!")
 print("This build of the program is meant for windows.")
 print("other builds for linux/macOS should be available,")
 print("at the same website you got this windows build from.")
 
-if platform.system() != "Windows":
-   print("OS FOUND "+str(platform.system())+" PLEASE READ MESSAGE ABOVE THIS")
+if os_name != "Windows":
+   print("OS FOUND "+str(os_name)+" PLEASE READ MESSAGE ABOVE THIS")
    print("EXITING PROGRAM IN 10 SECONDS....")
    sleep(10)
    sys.exit("OS NOT ALLOWED")
-
-#this should be the only hardcoded path but i am not sure.
-appjson_path = "project/meta/app.json"
-
-with open(appjson_path, "r") as f:
-    appjson = json.load(f)
 
 if appjson["devmode"]["m"] == True and os.path.exists(path=appjson["settings_path"]):
    os.remove(appjson["settings_path"])
@@ -34,9 +45,8 @@ if not os.path.exists(path=appjson["settings_path"]):
         json.dump(appjson["prodmake"], f)
 
 
-with open("project/meta/settings.json", "r") as f:
+with open(appjson["settings_path"], "r") as f:
     data = json.load(f)
-    print(data)
 
 if data["mode"] != "console" and data["mode"] != "gui":
  print("y=Console/n=GUI")
@@ -61,4 +71,4 @@ if data["mode"] == "":
      print("Settings.json updated.")
      data["mode"] = mode
 
-consoleselect.init()
+consoleselect.init(appjson)

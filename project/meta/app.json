@@ -4,7 +4,15 @@
 
         },
         "3ds": {
-
+            "exploits": {
+                "MiiMaker": {
+                    "desc": "It is the most recommended exploit for Nintendo 3DS.",
+                    "url": "3ds.hacks.guide"
+                },
+                "superskater-hax": {
+                    "desc": "It is the most recommended exploit for New Nintendo 3DS.",
+                    "url": "3ds.hacks.guide/superskaterhax"
+                }
         },
         "wii": "ModMii",
         "wii u": "ModMii",
@@ -16,7 +24,10 @@
         }
     },
     "prodmake": {"mode": "", "game_console": "", "stage": 0},
-    "devmode": {"m": true, "stage_skipping": false},
+    "devmode": {"m": true, "stage_skipping": false, "fakeOS": {
+        "enabled": true,
+        "os": "Windows"
+    }},
     "meta_path": "project/meta/meta.json",
-    "settings_path": "settings.json"
+    "settings_path": "project/settings.json"
 }

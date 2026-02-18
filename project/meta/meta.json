@@ -2,6 +2,5 @@
     "title": "Homebrew Installer v2",
     "version": "1.00",
     "desc": "an simple app that installs homebrew on mostly nintendo consoles.",
-    "program": "python",
-    "os": "windows"
+    "program": "python"
 }
