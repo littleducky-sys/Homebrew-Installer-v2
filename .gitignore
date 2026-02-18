@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 settings.json
 project/code/__pycache__
 
 **/.DS_Store
 /*.DS_Store
 .DS_Store
-=======
-project/settings.json
-project/code/__pycache__
->>>>>>> 494944da5856d7e6fb7991a5ef5d8a39c128640a
